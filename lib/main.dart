@@ -1,61 +1,15 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_import, prefer_final_fields, use_key_in_widget_constructors, unnecessary_import
 
+import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/pages/home_page.dart';
 
 void main() {
   runApp(MaterialApp(
     title: 'Flutter application',
     home: HomePage(),
+    theme: ThemeData(primarySwatch: Colors.indigo),
   ));
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Flutter App"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Align(
-          alignment: Alignment.center,
-          child: Container(
-            color: Colors.black,
-            width: 200,
-            height: 400,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.all(8.0),
-                    height: 100,
-                    width: 100,
-                    color: Colors.red,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8.0),
-                    height: 100,
-                    width: 100,
-                    color: Colors.yellow,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8.0),
-                    height: 100,
-                    width: 100,
-                    color: Colors.green,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
