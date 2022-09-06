@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/drawer.dart';
+import 'package:flutter_application_2/utils/Constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -36,6 +37,14 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.blueGrey[200],
       appBar: AppBar(
         title: Text("Flutter App"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                Constants.prefs.setBool("LoggedIn", false);
+                Navigator.pushReplacementNamed(context, "/login");
+              })
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
