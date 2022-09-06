@@ -1,7 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_application_2/change_name_card.dart';
-import 'package:flutter_application_2/drawer.dart';
+// ignore_for_file: avoid_print, prefer_const_constructors, sort_child_properties_last, prefer_typing_uninitialized_variables, prefer_final_fields
 
+import 'package:flutter/material.dart';
+import 'package:flutter_application_2/drawer.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+// ignore: use_key_in_widget_constructors
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -10,10 +14,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   TextEditingController _nameController = TextEditingController();
   var mytext = "change me";
+  var url = Uri.parse('https://jsonplaceholder.typicode.com/photos');
+  var data;
 
   @override
   void initState() {
     super.initState();
+    getData();
+  }
+
+  getData() async {
+    var res = await http.get(url);
+    data = jsonDecode(res.body);
+    print(data);
+    setState(() {});
   }
 
   @override
@@ -25,10 +39,25 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child:
-              Change_name_card(mytext: mytext, nameController: _nameController),
-        ),
+        child: data != null
+            ? ListView.builder(
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      leading: Image.network(
+                        data[index]["thumbnailUrl"],
+                      ),
+                      title: Text(data[index]["title"]),
+                      subtitle: Text("ID: ${data[index]["id"]}"),
+                    ),
+                  );
+                },
+                itemCount: data.length,
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
       drawer: Mydrawer(),
       floatingActionButton: FloatingActionButton(
