@@ -5,11 +5,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/pages/home_page.dart';
+import 'package:flutter_application_2/pages/login_page.dart';
 
 void main() {
   runApp(MaterialApp(
     title: 'Flutter application',
-    home: HomePage(),
+    home: LoginPage(),
     theme: ThemeData(primarySwatch: Colors.indigo),
+    routes: {
+      "/login": (context) => LoginPage(),
+      "/home": (context) => HomePage()
+    },
   ));
 }

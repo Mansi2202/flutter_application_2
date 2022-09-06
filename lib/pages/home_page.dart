@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_const_constructors, sort_child_properties_last, prefer_typing_uninitialized_variables, prefer_final_fields
+// ignore_for_file: avoid_print, prefer_const_constructors, sort_child_properties_last, prefer_typing_uninitialized_variables, prefer_final_fields, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/drawer.dart';
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                       leading: Image.network(
-                        data[index]["thumbnailUrl"],
+                        data[index]["url"],
                       ),
                       title: Text(data[index]["title"]),
                       subtitle: Text("ID: ${data[index]["id"]}"),
